@@ -13,11 +13,7 @@ void Application::run()
 {
     while (!glfwWindowShouldClose(window.getWindow()))
     {
-        glClear(GL_COLOR_BUFFER_BIT);
-        glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
-        
-        // Render code goes here
-        renderer.draw();
+        renderer.draw(window.getWindow());
         
         glfwSwapBuffers(window.getWindow());
         glfwPollEvents();

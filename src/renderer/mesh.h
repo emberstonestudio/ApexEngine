@@ -1,24 +1,34 @@
 ﻿#pragma once
-#include <memory>
+#include <vector>
+#include <glm/glm.hpp>
 
-class Shader;
+struct Vertex
+{
+    glm::vec3 Position;
+    glm::vec3 Normal;
+    glm::vec2 TexCoords;
+    glm::vec3 Color;
+};
 
 class Mesh
 {
-    
 public:
-    Mesh();
+    
+    Mesh(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices);
     ~Mesh();
-    
+        
     Mesh(const Mesh&) = delete;
-    Mesh &operator=(const Mesh&) = delete;
-    
-    void CreateTriangle();
-    void Draw() const;
+    Mesh& operator=(const Mesh&) = delete;
+        
+    void Bind();
+    void Unbind();
+        
+    size_t GetIndexCount() const { return indices.size(); }
     
 private:
-    unsigned int VBO = 0;
-    unsigned int VAO = 0;
+    unsigned int VAO, VBO, EBO = 0;
+    std::vector<Vertex> vertices;
+    std::vector<unsigned int> indices;
     
-    std::shared_ptr<Shader> shader;
+    void setupMesh();
 };

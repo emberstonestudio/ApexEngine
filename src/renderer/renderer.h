@@ -1,5 +1,8 @@
 ﻿#pragma once
 #include <memory>
+#include "app/window.h"
+
+class Scene;
 
 class Mesh;
 
@@ -13,8 +16,8 @@ public:
     Renderer(const Renderer&) = delete;
     Renderer& operator=(const Renderer&) = delete;
     
-    void draw() const;
+    void draw(GLFWwindow* window) const;
     
 private:
-    std::unique_ptr<Mesh> testMesh;
+    std::unique_ptr<Scene> scene;
 };
