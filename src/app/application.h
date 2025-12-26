@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "window.h"
+#include "renderer/renderer.h"
 
 class Application
 {
@@ -15,6 +16,7 @@ public:
     
 private:
     Window window;
+    Renderer renderer;
     
     void shutdown();
 };
